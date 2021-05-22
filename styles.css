@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    font-family: 'DM Mono', monospace;
+    height: 100%;
+    background-color: #fafafa;
+}
+
+body > header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5.5rem;
+    border-bottom: .5rem solid #ECF5FD;
+}
+
+body > main {
+    width: 100%;
+    padding: 5rem;
+    margin-top: 5rem;
+}
+
+body > footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5.5rem;
+    background-color: #fafafa;
+    border-top: .5rem solid #ECF5FD;
+}
+
+#logo{
+    width: 10rem;
+    height:auto;
+    padding: 2rem;
+}
+
+.middle{
+    text-align: center;
+    padding: 2rem;
+}
