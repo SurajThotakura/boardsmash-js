@@ -5,24 +5,27 @@
 }
 
 html, body{
-    font-family: 'DM Mono', monospace;
-    height: 100%;
-    background-color: #fafafa;
+    font-family: "DM Mono";
+    /* font-weight: 600; */
+    background-color: none;
+    color: #333333;
 }
+
 
 body > header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    height: 5.5rem;
-    border-bottom: .5rem solid #ECF5FD;
+    height: 5rem;
+    /* border-bottom: .25rem solid #ECF5FD; */
 }
 
 body > main {
     width: 100%;
-    padding: 5rem;
+    padding: 0 5rem;
     margin-top: 5rem;
+    align-items: center;
 }
 
 body > footer {
@@ -36,12 +39,99 @@ body > footer {
 }
 
 #logo{
-    width: 10rem;
+    width: 9rem;
+    float: left;
     height:auto;
-    padding: 2rem;
+    margin: 2rem;
 }
 
 .middle{
     text-align: center;
     padding: 2rem;
+}
+
+.icomoon{
+    display: inline-flex;
+    vertical-align: top;
+    font-size: 1rem;
+}
+
+.tab{
+    float: left;
+    margin-left: .5rem;
+    margin-right: .5rem;
+    padding: .75rem;
+    margin-top: 2rem;
+    color: #999999;
+    /* font-weight: 600; */
+    line-height: 16px;
+}
+
+
+.tab:hover{
+    cursor: pointer;
+    color: #333333;
+    background-color: #f2f2f2;
+    border-radius: .5rem;
+}
+
+.tab:active{
+    cursor: pointer;
+    background-color: #ECF5FD;
+    border-radius: .5rem;
+}
+
+.avatar{
+    float: right;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 2rem;
+    text-align: center;
+    line-height: 40px;
+    background-color: #ECF5FD;
+    border-radius: 10rem;
+}
+
+.avatar:hover{
+    cursor: pointer;
+}
+
+#tab0Content{
+    position: relative;
+    z-index: -1;
+}
+
+#typeContent{
+    letter-spacing: 1px;
+    height: 10rem;
+    margin-top: 35vh;
+    overflow: hidden;
+    font-size: 2rem;
+    color: #999999;
+    /* -webkit-filter: blur(4px); */
+}
+
+#timeCount{
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 7rem;
+    color: #e6e6e6;
+}
+
+#helpStuff{
+    margin-top: 1rem;
+    font-size: .75rem;
+    text-align: center;
+}
+
+.bubble{
+    background-color: #ECF5FD;
+    border-radius: 8px;
+    padding: .25rem;
+}
+
+#tab1Content, #tab2Content, #tab3Content, #tab4Content{
+    margin-top: 35vh;
 }
