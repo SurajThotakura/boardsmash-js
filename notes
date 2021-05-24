@@ -13,3 +13,6 @@ Things that I learned along the way.
 
 3.  adding css in *{} :
         Only a minimumum number of attributes should be added this as these attributes will be rendered to every element which might impact the performance significantly.
+
+4.  File paths are case sensitive:
+        local deployments seem to ignore this but when deployed on firebase few assets were missing due to wrong folder name particularly a mistake in using capital "A"
