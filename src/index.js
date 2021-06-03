@@ -6,7 +6,7 @@ let tabContent = document.getElementsByClassName('tabContent');
 
 let content = document.getElementById('content');
 
-const typeUpdate = document.getElementById('type');
+const textAreaElement = document.getElementById('type');
 
 const timeCount = document.getElementById('timeCount');
 
@@ -14,15 +14,24 @@ let startButton = document.getElementById('startButton');
 
 let restartButton = document.getElementById('restartButton');
 
-let smash;
-
-// console.log(typeUpdate);
+// console.log(textAreaElement);
 
 const timeValue = 30;
 
 let time = timeValue;
 
 let i= 0, j= 0, k= 0, w = 0, speed = 0, accuracy = 0;
+
+const globals = {
+    keyPosition: 0,
+    numberOfAllKeyStrokes: 0,
+    errorCount: 0,
+    wordCount: 0,
+    generatedContent: []
+}
+
+const SPACE = ' ';
+const oddKeys = ['Shift','Tab','Alt'];
 
 // function to clear all the tab contents
 function clearTabs() {
@@ -65,7 +74,7 @@ function generateText(){
     // console.log(paragraph);
 
     // To convert all the charecters to lower case
-    return smash = content.innerText;
+    return globals.generatedContent = content.innerText;
 }
 
 function countDown(){
@@ -83,17 +92,17 @@ function countDown(){
             timeCount.style.fontSize = '4rem';
             timeCount.innerHTML = 'Typing Speed: '+ speed + 'WPM' + '</br>Accuracy: ' + accuracy + '%';
 
-            typeUpdate.disabled= true;
+            textAreaElement.disabled= true;
             startButton.style.opacity = '1';
             startButton.style.pointerEvents = 'auto';
 
             clearInterval(haha);
 
-            // typeUpdate.removeEventListener('mousemove', validation);
+            textAreaElement.removeEventListener('keyup', handleValidation);
 
             time= timeValue;
             startButton.disabled = false;
-            console.log(typeUpdate);
+            console.log(textAreaElement);
         }
     }, 1000);
 }
@@ -103,35 +112,46 @@ function resetVariables(){
 }
 
 // Verification of the entries (Did not work when outside of the event listner).
-// let validation = (e, f) => {
-//     let a = f[i];
-//     let b = e.key;
-//     console.log(a, b, i, "errors = " + j, k, w);
-//     k++;
-//     if(a==b){
-//         if(b == ' '){
-//             w++;
-//         };
-//         i++;
-//     }
-//     else if(b == 'Backspace'){
-//         if(b == ' '){
-//             w--;
-//         }
-//         i--;
-//     }
-//     else if(b == 'Shift' || b == 'Tab' || b == 'Alt'){
-//         console.log('hello you pressed an odd key');
-//     }
-//     else if (a != b){
-//         i++;
-//         j++;
-//     }
-// };
+const handleValidation = (event) => {
+    // b-> inputKey
+    //a -> expectedChar
+    //w -> wordCount
+    //i -> keyPosition
+    console.log('called');
+    let {keyPosition,numberOfAllKeyStrokes,wordCount,errorCount,generatedContent} = globals;
+    const expectedChar = generatedContent[keyPosition];
+    const inputKey = event.key;
+    // console.log(a, b, keyPosition, "errors = " + j, k, w);
+    numberOfAllKeyStrokes++;
+
+    if(inputKey===expectedChar){
+        if(inputKey === SPACE){
+            wordCount++;
+        };
+        keyPosition++;
+        numberOfAllKeyStrokes++;
+    }
+    else if(inputKey === 'Backspace'){
+        if(inputKey === SPACE){
+            wordCount--;
+        }
+        keyPosition--;
+    }
+    else if(oddKeys.includes(inputKey)){
+    }
+    else if (inputKey !== expectedChar ){
+        keyPosition++;
+        errorCount++;
+    }
+};
+
+
+// var,function were part of javascript. ES6 let and const -> lack hoisting
+
 
 window.onload = () => {
     restartButton.style.display = 'none';
-    typeUpdate.disabled= true;
+    textAreaElement.disabled= true;
 
     // generateText();
 
@@ -153,39 +173,15 @@ startButton.addEventListener('click', () => {
 
     generateText();
 
-    typeUpdate.value = '';
-    typeUpdate.disabled= false;
-    typeUpdate.focus();
+    textAreaElement.value = '';
+    textAreaElement.disabled= false;
+    textAreaElement.focus();
     timeCount.style.fontSize = '7rem';
     timeCount.innerHTML = timeValue;
     countDown();
 
     // validation
-    typeUpdate.addEventListener('keyup', (e) => {
-    let a = smash[i];
-    let b = e.key;
-    console.log(a, b, i, "errors = " + j, k, w);
-    k++;
-    if(a==b){
-        if(b == ' '){
-            w++;
-        };
-        i++;
-    }
-    else if(b == 'Backspace'){
-        if(b == ' '){
-            w--;
-        }
-        i--;
-    }
-    else if(b == 'Shift' || b == 'Tab' || b == 'Alt'){
-        console.log('hello you pressed an odd key');
-    }
-    else if (a != b){
-        i++;
-        j++;
-    }
-    });
+    textAreaElement.addEventListener('keyup',handleValidation);
 
 });
 
@@ -205,9 +201,9 @@ startButton.addEventListener('click', () => {
 //     // To convert all the charecters to lower case
 //     let smash = content.innerText;
 
-//     typeUpdate.value = '';
-//     typeUpdate.disabled= false;
-//     typeUpdate.focus();
+//     textAreaElement.value = '';
+//     textAreaElement.disabled= false;
+//     textAreaElement.focus();
 //     timeCount.style.fontSize = '7rem';
 //     timeCount.innerHTML = timeValue;
 //     countDown();
