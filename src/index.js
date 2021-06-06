@@ -14,19 +14,17 @@ let startButton = document.getElementById('startButton');
 
 let restartButton = document.getElementById('restartButton');
 
-// console.log(textAreaElement);
-
 const timeValue = 30;
 
 let time = timeValue;
 
-let i= 0, j= 0, k= 0, w = 0, speed = 0, accuracy = 0;
-
-const globals = {
-    keyPosition: 0,
-    numberOfAllKeyStrokes: 0,
-    errorCount: 0,
-    wordCount: 0,
+let globals = {
+    keyPosition: 0, // i
+    numberOfAllKeyStrokes: 0, //k
+    errorCount: 0, // j
+    wordCount: 0, // w
+    speed: 0,
+    accuracy: 0,
     generatedContent: []
 }
 
@@ -58,27 +56,17 @@ function showTab(e,i) {
     });
 }
 
-// loop to assign eventListeners to all the tabs
-// for (let index = 0; index < tab.length; index++) {
-//     const element = tab[index];
-//     element.addEventListener('click', () => {
-//         clearTabs();
-//         openTab(index);
-//     });
-// }
-
 function generateText(){
     // Generating typing content
     const paragraph = _paragraph(50);
     content.innerHTML = paragraph;
-    // console.log(paragraph);
 
-    // To convert all the charecters to lower case
+    // To convert all the characters to lower case
     return globals.generatedContent = content.innerText;
 }
 
 function countDown(){
-    console.log('countdown started');
+    // console.log('countdown started');
     let haha = setInterval(() => {
         // this has a delay of 1s, to compensate it time is shown as 'time-1' and only timeValue-1 intervals are requested.
         if(time>1){
@@ -86,8 +74,9 @@ function countDown(){
             time--;
         }
         else{
-            speed = w*2;
-            accuracy = Math.floor((i/k)*100);
+            let {keyPosition, wordCount, speed, accuracy, numberOfAllKeyStrokes} = globals;
+            speed = wordCount*2;
+            accuracy = Math.floor((keyPosition/numberOfAllKeyStrokes)*100);
 
             timeCount.style.fontSize = '4rem';
             timeCount.innerHTML = 'Typing Speed: '+ speed + 'WPM' + '</br>Accuracy: ' + accuracy + '%';
@@ -100,48 +89,47 @@ function countDown(){
 
             textAreaElement.removeEventListener('keyup', handleValidation);
 
-            time= timeValue;
+            time = timeValue;
             startButton.disabled = false;
-            console.log(textAreaElement);
         }
     }, 1000);
 }
 
 function resetVariables(){
-    i= 0, j= 0, k= 0, w = 0, speed = 0, accuracy = 0;
+    globals.keyPosition= 0, globals.errorCount= 0, globals.numberOfAllKeyStrokes= 0, globals.wordCount = 0, globals.speed = 0, globals.accuracy = 0;
 }
 
 // Verification of the entries (Did not work when outside of the event listner).
 const handleValidation = (event) => {
-    // b-> inputKey
-    //a -> expectedChar
-    //w -> wordCount
-    //i -> keyPosition
-    console.log('called');
-    let {keyPosition,numberOfAllKeyStrokes,wordCount,errorCount,generatedContent} = globals;
-    const expectedChar = generatedContent[keyPosition];
-    const inputKey = event.key;
-    // console.log(a, b, keyPosition, "errors = " + j, k, w);
-    numberOfAllKeyStrokes++;
+    // b -> inputKey
+    // a -> expectedChar
+    // w -> wordCount
+    // i -> keyPosition
+    // let {keyPosition,numberOfAllKeyStrokes,wordCount,errorCount,generatedContent} = globals; // adding this is not allowing updating the variables.
+    let expectedChar = globals.generatedContent[globals.keyPosition];
+    let inputKey = event.key;
+    // console.log(globals);
+    // console.log(globals.expectedChar, globals.inputKey, globals.keyPosition, "errors = " + globals.errorCount, globals.numberOfAllKeyStrokes, globals.wordCount);
+    
+    globals.numberOfAllKeyStrokes++;
 
-    if(inputKey===expectedChar){
-        if(inputKey === SPACE){
-            wordCount++;
+    if(inputKey == expectedChar){
+        if(inputKey == SPACE){
+            globals.wordCount++;
         };
-        keyPosition++;
-        numberOfAllKeyStrokes++;
+        globals.keyPosition++;
     }
-    else if(inputKey === 'Backspace'){
-        if(inputKey === SPACE){
-            wordCount--;
+    else if(inputKey == 'Backspace'){
+        if(inputKey == SPACE){
+            globals.wordCount--;
         }
-        keyPosition--;
+        globals.keyPosition--;
     }
     else if(oddKeys.includes(inputKey)){
     }
-    else if (inputKey !== expectedChar ){
-        keyPosition++;
-        errorCount++;
+    else if (inputKey != expectedChar ){
+        globals.keyPosition++;
+        globals.errorCount++;
     }
 };
 
@@ -169,7 +157,7 @@ startButton.addEventListener('click', () => {
 
     // console.log('yo this is the thing'+ smash);
     resetVariables();
-    // console.log(i);
+    // console.log(globals);
 
     generateText();
 
