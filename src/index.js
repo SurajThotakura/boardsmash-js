@@ -105,32 +105,35 @@ const handleValidation = (event) => {
     // a -> expectedChar
     // w -> wordCount
     // i -> keyPosition
-    // let {keyPosition,numberOfAllKeyStrokes,wordCount,errorCount,generatedContent} = globals; // adding this is not allowing updating the variables.
-    let expectedChar = globals.generatedContent[globals.keyPosition];
+    let {keyPosition,numberOfAllKeyStrokes,wordCount,errorCount,generatedContent} = globals; // adding this is not allowing updating the variables.
+    let expectedChar = generatedContent[globals.keyPosition];
     let inputKey = event.key;
     // console.log(globals);
     // console.log(globals.expectedChar, globals.inputKey, globals.keyPosition, "errors = " + globals.errorCount, globals.numberOfAllKeyStrokes, globals.wordCount);
     
-    globals.numberOfAllKeyStrokes++;
+    numberOfAllKeyStrokes++;
 
     if(inputKey == expectedChar){
         if(inputKey == SPACE){
-            globals.wordCount++;
+            wordCount++;
         };
-        globals.keyPosition++;
+        keyPosition++;
     }
     else if(inputKey == 'Backspace'){
         if(inputKey == SPACE){
-            globals.wordCount--;
+            wordCount--;
         }
-        globals.keyPosition--;
+        keyPosition--;
     }
     else if(oddKeys.includes(inputKey)){
     }
     else if (inputKey != expectedChar ){
-        globals.keyPosition++;
-        globals.errorCount++;
+        keyPosition++;
+        errorCount++;
     }
+
+    // populating the globals object with the changed variables
+    globals = {keyPosition,numberOfAllKeyStrokes,wordCount,errorCount,generatedContent};
 };
 
 
