@@ -118,6 +118,7 @@ body > footer {
 
 #caret{
     position: absolute;
+    display: none;
     left: 0px;
     top: 0px;
     transition: left .1s ease-out;

@@ -1,13 +1,10 @@
-import { paragraph as _paragraph } from 'txtgen';
-import "splitting/dist/splitting.css";
-import "splitting/dist/splitting-cells.css";
-import Splitting from "splitting"
+import {generateContent} from "./contentGen";
 
 let tab = document.getElementsByClassName('tab');
 
 let tabContent = document.getElementsByClassName('tabContent');
 
-let content = document.getElementById('content');
+// let content = document.getElementById('content');
 
 const timeCount = document.getElementById('timeCount');
 
@@ -19,7 +16,7 @@ const keystrokeCapture = document.getElementsByTagName('body')[0];
 
 const caret = document.getElementById('caret');
 
-const timeValue = 30;
+const timeValue = 5;
 
 let time = timeValue;
 
@@ -58,20 +55,6 @@ function showTab(e,i) {
     e.addEventListener('click', () => {
         clearTabs();
         openTab(i);
-    });
-}
-
-function generateText(){
-    // Generating typing content
-    const paragraph = _paragraph(50);
-    content.innerHTML= paragraph;
-
-    //Splitting
-    characterArray = Splitting({
-        target: content,
-        by: 'chars',
-        whitespace: 'true',
-        key: null
     });
 }
 
@@ -114,6 +97,7 @@ const handleValidation = (e) => {
     // a -> expectedChar
     // w -> wordCount
     // i -> keyPosition
+    console.log(e.target);
     let characters = characterArray[0].chars;
     let {keyPosition,numberOfAllKeyStrokes,wordCount,errorCount,generatedContent} = globals; // adding this is not allowing updating the variables.
     let expectedChar = characterArray[0].chars[globals.keyPosition].innerText;
@@ -121,6 +105,10 @@ const handleValidation = (e) => {
     // console.log(globals);
     console.log(expectedChar, inputKey, keyPosition, "errors = " + errorCount, numberOfAllKeyStrokes, wordCount);
     
+    if(numberOfAllKeyStrokes == 0){
+        countDown();
+    }
+
     numberOfAllKeyStrokes++;
 
     if(inputKey == expectedChar){
@@ -169,6 +157,16 @@ window.onload = () => {
     openTab(0);
 }
 
+function resteContent(){
+    content.outerHTML = '<div id="content">Test</div>';
+}
+
+function makeContent(){
+    resteContent();
+    let contentReset = document.getElementById('content');
+    characterArray = generateContent(contentReset);
+}
+
 startButton.addEventListener('click', () => {
     startButton.style.opacity = '.5';
     startButton.style.pointerEvents = 'none';
@@ -176,13 +174,15 @@ startButton.addEventListener('click', () => {
     // console.log('yo this is the thing'+ smash);
     resetVariables();
 
-    generateText();
+    makeContent();
 
     console.log(characterArray)
 
     timeCount.style.fontSize = '7rem';
     timeCount.innerHTML = timeValue;
-    countDown();
+    caret.style.left = characterArray[0].chars[0].offsetLeft + "px"
+    caret.style.top = characterArray[0].chars[0].offsetTop + "px"
+    caret.style.display = "block";
 
     keystrokeCapture.addEventListener('keydown',handleValidation);
 });
