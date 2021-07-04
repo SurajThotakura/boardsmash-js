@@ -1,18 +1,20 @@
-import { paragraph as _paragraph } from 'txtgen';
+import {generateContent} from "./contentGen";
 
 let tab = document.getElementsByClassName('tab');
 
 let tabContent = document.getElementsByClassName('tabContent');
 
-let content = document.getElementById('content');
-
-const textAreaElement = document.getElementById('type');
+// let content = document.getElementById('content');
 
 const timeCount = document.getElementById('timeCount');
 
 let startButton = document.getElementById('startButton');
 
-let restartButton = document.getElementById('restartButton');
+let characterArray = 0;
+
+const keystrokeCapture = document.getElementsByTagName('body')[0];
+
+const caret = document.getElementById('caret');
 
 const timeValue = 30;
 
@@ -56,18 +58,9 @@ function showTab(e,i) {
     });
 }
 
-function generateText(){
-    // Generating typing content
-    const paragraph = _paragraph(50);
-    content.innerHTML = paragraph;
-
-    // To convert all the characters to lower case
-    return globals.generatedContent = content.innerText;
-}
-
 function countDown(){
     // console.log('countdown started');
-    let haha = setInterval(() => {
+    let countdownTimer = setInterval(() => {
         // this has a delay of 1s, to compensate it time is shown as 'time-1' and only timeValue-1 intervals are requested.
         if(time>1){
             timeCount.innerHTML = (time-1);
@@ -80,14 +73,13 @@ function countDown(){
 
             timeCount.style.fontSize = '4rem';
             timeCount.innerHTML = 'Typing Speed: '+ speed + 'WPM' + '</br>Accuracy: ' + accuracy + '%';
-
-            textAreaElement.disabled= true;
             startButton.style.opacity = '1';
             startButton.style.pointerEvents = 'auto';
 
-            clearInterval(haha);
+            clearInterval(countdownTimer);
 
-            textAreaElement.removeEventListener('keyup', handleValidation);
+            keystrokeCapture.removeEventListener('keydown', handleValidation);
+            characterArray = 0;
 
             time = timeValue;
             startButton.disabled = false;
@@ -100,26 +92,39 @@ function resetVariables(){
 }
 
 // Verification of the entries (Did not work when outside of the event listner).
-const handleValidation = (event) => {
+const handleValidation = (e) => {
     // b -> inputKey
     // a -> expectedChar
     // w -> wordCount
     // i -> keyPosition
+    console.log(e.target);
+    let characters = characterArray[0].chars;
     let {keyPosition,numberOfAllKeyStrokes,wordCount,errorCount,generatedContent} = globals; // adding this is not allowing updating the variables.
-    let expectedChar = generatedContent[globals.keyPosition];
-    let inputKey = event.key;
+    let expectedChar = characterArray[0].chars[globals.keyPosition].innerText;
+    let inputKey = e.key;
     // console.log(globals);
-    // console.log(globals.expectedChar, globals.inputKey, globals.keyPosition, "errors = " + globals.errorCount, globals.numberOfAllKeyStrokes, globals.wordCount);
+    console.log(expectedChar, inputKey, keyPosition, "errors = " + errorCount, numberOfAllKeyStrokes, wordCount);
     
+    if(numberOfAllKeyStrokes == 0){
+        countDown();
+    }
+
     numberOfAllKeyStrokes++;
 
     if(inputKey == expectedChar){
+        characterArray[0].chars[globals.keyPosition].style.color = 'var(--font-grey)';
+        characters[globals.keyPosition]
+        caret.style.left = characters[globals.keyPosition+1].offsetLeft + "px";
+        caret.style.top = characters[globals.keyPosition+1].offsetTop + "px";
         if(inputKey == SPACE){
             wordCount++;
         };
         keyPosition++;
     }
     else if(inputKey == 'Backspace'){
+        characterArray[0].chars[globals.keyPosition-1].style.color = 'var(--second-grey)';
+        caret.style.left = characters[globals.keyPosition-1].offsetLeft + "px";
+        caret.style.top = characters[globals.keyPosition-1].offsetTop + "px";
         if(inputKey == SPACE){
             wordCount--;
         }
@@ -128,6 +133,9 @@ const handleValidation = (event) => {
     else if(oddKeys.includes(inputKey)){
     }
     else if (inputKey != expectedChar ){
+        characterArray[0].chars[globals.keyPosition].style.color = 'var(--error)';
+        caret.style.left = characters[globals.keyPosition+1].offsetLeft + "px";
+        caret.style.top = characters[globals.keyPosition+1].offsetTop + "px";
         keyPosition++;
         errorCount++;
     }
@@ -141,10 +149,6 @@ const handleValidation = (event) => {
 
 
 window.onload = () => {
-    restartButton.style.display = 'none';
-    textAreaElement.disabled= true;
-
-    // generateText();
 
     // to clear all the tabs when the page is loaded
     clearTabs();
@@ -153,50 +157,31 @@ window.onload = () => {
     openTab(0);
 }
 
+function resteContent(){
+    content.outerHTML = '<div id="content">Test</div>';
+}
+
+function makeContent(){
+    resteContent();
+    let contentReset = document.getElementById('content');
+    characterArray = generateContent(contentReset);
+}
+
 startButton.addEventListener('click', () => {
-    // console.log('test started');
     startButton.style.opacity = '.5';
     startButton.style.pointerEvents = 'none';
 
-    // console.log('yo this is the thing'+ smash);
     resetVariables();
-    // console.log(globals);
 
-    generateText();
+    makeContent();
 
-    textAreaElement.value = '';
-    textAreaElement.disabled= false;
-    textAreaElement.focus();
+    console.log(characterArray)
+
     timeCount.style.fontSize = '7rem';
     timeCount.innerHTML = timeValue;
-    countDown();
+    caret.style.left = characterArray[0].chars[0].offsetLeft + "px"
+    caret.style.top = characterArray[0].chars[0].offsetTop + "px"
+    caret.style.display = "block";
 
-    // validation
-    textAreaElement.addEventListener('keyup',handleValidation);
-
+    keystrokeCapture.addEventListener('keydown',handleValidation);
 });
-
-
-// Tried to seperate the event listner for validation, did not work.
-// restartButton.addEventListener('click', () => {
-//     console.log('restarted test');
-//     restartButton.style.pointerEvents = 'none';
-//     restartButton.style.opacity = '.5';
-//     resetVariables();
-
-//     // Generating typing content
-//     const paragraph = _paragraph(50);
-//     content.innerHTML = paragraph;
-//     console.log(paragraph);
-
-//     // To convert all the charecters to lower case
-//     let smash = content.innerText;
-
-//     textAreaElement.value = '';
-//     textAreaElement.disabled= false;
-//     textAreaElement.focus();
-//     timeCount.style.fontSize = '7rem';
-//     timeCount.innerHTML = timeValue;
-//     countDown();
-
-// })

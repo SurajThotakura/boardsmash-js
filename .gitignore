@@ -3,11 +3,14 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+public/
+.parcel-cache/
+.firebase/
+dist/
 # Removing MacOS files
 .DS_Store
 
 # firebase
-.firebase
 .firebaserc
 
 # User-specific files

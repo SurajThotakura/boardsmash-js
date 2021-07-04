@@ -5,15 +5,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "init": "firebase init hosting",
+    "yarninit": "yarn init",
     "start": "parcel serve src/index.html",
     "build": "parcel build src/index.html",
     "deploy": "firebase deploy",
     "serve": "firebase serve"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SurajThotakura/boardsmash-js.git"
-  },
+  "repository": "git+https://github.com/SurajThotakura/boardsmash-js.git",
   "author": "Suraj Thotakura",
   "license": "MIT",
   "bugs": {
@@ -27,7 +25,10 @@
     "firebase-tools": "^9.12.1",
     "json-data-extender": "^0.7.1",
     "parcel": "^2.0.0-beta.2",
+    "splitting": "^1.0.6",
     "txtgen": "^2.2.8",
     "typescript": "^4.3.2"
-  }
+  },
+  "main": "./public/index.js",
+  "devDependencies": {}
 }

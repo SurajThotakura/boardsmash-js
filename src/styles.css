@@ -5,23 +5,34 @@
 }
 
 :root{
+    --white: #ffffff;
     --blue: #e3f2ff;
+    --darkblue: #46a8ff;
     --lightblue: #ECF5FD;
     --blush: #EEB9C1;
+    --dark-grey: #131313;
     --font-grey: #333333;
+    --medium-grey:#999999;
+    --error: #ff236c;
     --white: #ffffff;
     --second-grey: #bbbbbb;
     --border-grey: #e6e6e6;
     --second-white: #f2f2f2;
+    --background: #ffffff;
+    --font: #4c4c4c;
 }
 
 html, body{
     font-family: "DM Mono";
     /* font-weight: 600; */
-    background-color: none;
-    color: var(--font-gery);
+    background: var(--background);
+    color: var(--font);
 }
 
+.dark{
+    --font: var(--medium-grey);
+    --background:var(--font-grey);
+}
 
 body > header {
     position: fixed;
@@ -29,6 +40,8 @@ body > header {
     left: 0;
     right: 0;
     height: 5rem;
+    background: var(--background);
+    /* background-color: var(--background); */
     /* border-bottom: .25rem solid ; */
 }
 
@@ -38,6 +51,7 @@ body > main {
     margin-top: 5rem;
     align-items: center;
     justify-content: center;
+    background: var(--background);
 }
 
 body > footer {
@@ -48,7 +62,8 @@ body > footer {
     height: 4rem;
     padding: 1rem;
     text-align: center;
-    background-color: var(--white);
+    background: var(--background);
+    /* background-color: var(--background); */
     border-top: .25rem solid var(--lightblue);
 }
 
@@ -114,35 +129,25 @@ body > footer {
     cursor: pointer;
 }
 
-textarea {
+#caret{
     position: absolute;
-    width: 80vw;
-    height: 7.9rem;
-    columns: auto;
-    overflow: hidden;
-    border-radius: 2px;
-    border: none;
-    background-color: transparent;
-    letter-spacing: 1px;
-    color: var(--font-gery);
-    outline: none;
-    font-size: 2rem;
-    font-family: "DM Mono";
-    resize: none;
-  }
-
-#content{
-    text-transform: lowercase;
-    color: var(--second-grey);
+    display: none;
+    left: 0px;
+    top: 0px;
+    transition: left .1s ease-out;
+    width: 4px;
+    height: 2.5rem;
+    border-radius: 4px;
+    background-color: var(--darkblue);
 }
 
-#typeContent{
+#content{
+    color: var(--second-grey);
     letter-spacing: 1px;
     height: 10.5rem;
     margin-top: 35vh;
     overflow: hidden;
     font-size: 2rem;
-    /* -webkit-filter: blur(4px); */
 }
 
 #startButton{
@@ -163,7 +168,7 @@ textarea {
     background-color: var(--lightblue);
 }
 
-#restartButton{
+/* #restartButton{
     background-color: var(--lightblue);
     padding: .75rem;
     border-radius: 8px;
@@ -179,7 +184,7 @@ textarea {
 
 #restartButton:active{
     background-color: var(--lightblue);
-}
+} */
 
 #timeCount{
     margin-top: 2rem;
