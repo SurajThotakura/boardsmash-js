@@ -4,10 +4,14 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 public/
-
 .parcel-cache/
 .firebase/
 dist/
+# Removing MacOS files
+.DS_Store
+
+# firebase
+.firebaserc
 
 # User-specific files
 *.rsuser
@@ -354,3 +358,8 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# To avoid parcel cache comminting into the repo
+.parcel-cache/
+
+dist
