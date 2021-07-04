@@ -5,25 +5,34 @@
 }
 
 :root{
+    --white: #ffffff;
     --blue: #e3f2ff;
     --darkblue: #46a8ff;
     --lightblue: #ECF5FD;
     --blush: #EEB9C1;
+    --dark-grey: #131313;
     --font-grey: #333333;
+    --medium-grey:#999999;
     --error: #ff236c;
     --white: #ffffff;
     --second-grey: #bbbbbb;
     --border-grey: #e6e6e6;
     --second-white: #f2f2f2;
+    --background: #ffffff;
+    --font: #4c4c4c;
 }
 
 html, body{
     font-family: "DM Mono";
     /* font-weight: 600; */
-    background-color: none;
-    color: var(--font-gery);
+    background: var(--background);
+    color: var(--font);
 }
 
+.dark{
+    --font: var(--medium-grey);
+    --background:var(--font-grey);
+}
 
 body > header {
     position: fixed;
@@ -31,6 +40,8 @@ body > header {
     left: 0;
     right: 0;
     height: 5rem;
+    background: var(--background);
+    /* background-color: var(--background); */
     /* border-bottom: .25rem solid ; */
 }
 
@@ -40,6 +51,7 @@ body > main {
     margin-top: 5rem;
     align-items: center;
     justify-content: center;
+    background: var(--background);
 }
 
 body > footer {
@@ -50,7 +62,8 @@ body > footer {
     height: 4rem;
     padding: 1rem;
     text-align: center;
-    background-color: var(--white);
+    background: var(--background);
+    /* background-color: var(--background); */
     border-top: .25rem solid var(--lightblue);
 }
 

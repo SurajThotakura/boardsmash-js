@@ -16,7 +16,7 @@ const keystrokeCapture = document.getElementsByTagName('body')[0];
 
 const caret = document.getElementById('caret');
 
-const timeValue = 5;
+const timeValue = 30;
 
 let time = timeValue;
 
@@ -171,7 +171,6 @@ startButton.addEventListener('click', () => {
     startButton.style.opacity = '.5';
     startButton.style.pointerEvents = 'none';
 
-    // console.log('yo this is the thing'+ smash);
     resetVariables();
 
     makeContent();
