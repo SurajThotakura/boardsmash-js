@@ -3,7 +3,7 @@ import { calculateSpeed } from "./calculations";
 import { buttonEnnable } from "./extraFunctions";
 
 
-const timeValue = 10;
+const timeValue = 30;
 
 let time = timeValue;
 

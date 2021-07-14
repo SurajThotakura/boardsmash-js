@@ -1,15 +1,59 @@
+import { countDown } from "./countdownTimer";
+
 const SPACE = ' ';
+
+const BACKSPACE = 'Backspace'
 
 const oddKeys = ['Shift','Tab','Alt', 'Enter','CapsLock','F1','F2','F3','F4','F5','F6','F7','F8','F9','F10','F11','F12','NumLock','ScrollLock'];
 
-function rightInput(){
-    characters[keyPosition].style.color = 'var(--font-grey)';
-    CaretPosition.left = characters[keyPosition+1].offsetLeft + "px";
+let caretPosition = caret.style;
+
+function moveCaretRight(characters, keyPosition){
+
+    caretPosition.left = characters[keyPosition+1].offsetLeft + "px";
+
     caretPosition.top = characters[keyPosition+1].offsetTop + "px";
+
 }
+
+function moveCaretLeft(characters, keyPosition){
+
+    caretPosition.left = characters[keyPosition-1].offsetLeft + "px";
+
+    caretPosition.top = characters[keyPosition-1].offsetTop + "px";
+
+}
+
+function rightInput(characters, keyPosition){
+
+    characters[keyPosition].style.color = 'var(--font-grey)';
+
+    moveCaretRight(keyPosition);
+
+}
+
+function backspaceUsed(characters, keyPosition){
+
+    characters[keyPosition-1].style.color = 'var(--second-grey)';
+
+    moveCaretLeft(keyPosition);
+
+}
+
+function wrongInput(characters, keyPosition){
+
+    characters[keyPosition].style.color = 'var(--error)';
+
+    moveCaretRight(keyPosition);
+
+}
+
+
 
 export function validation(Event, characterArray, globals, caret) {
     
+    // console.log(characterArray);
+
     let inputKey = Event.key;
 
     let characters = characterArray[0].chars;
@@ -18,18 +62,54 @@ export function validation(Event, characterArray, globals, caret) {
     
     let expectedChar = characters[globals.keyPosition].innerText;
 
-    let caretPosition = caret.style;
+    
 
-    let isCorrectCondition = numberOfAllKeyStrokes == 0 ? countDown(timeCount, startButton, validation) 
+
+    let validationCondition = numberOfAllKeyStrokes > 0 ? () => {
         
-    : inputKey == expectedChar ? () => {
+        countDown(timeCount, startButton, validation); 
 
-        rightInput(characters, keyPosition, caretPosition);
+        
+    }: inputKey == expectedChar ? () => {
+
+        rightInput(characters, keyPosition);
+        
         let isWordComplete = inputKey == SPACE ? wordCount++ : {};
 
-    }
+        isWordComplete;
 
-    console.log('validation was called');
+        keyPosition++;
+
+
+    } : inputKey == BACKSPACE ? () => {
+
+        backspaceUsed(characters, keyPosition);
+
+        let isWordDeleted = inputKey == SPACE ? wordCount-- : {};
+
+        isWordDeleted;
+
+        keyPosition--;
+
+
+    } : oddKeys.includes(inputKey) ? () => {
+
+
+    } : inputKey != expectedChar ? () => {
+
+        wrongInput(characters, keyPosition);
+
+        keyPosition++;
+
+        errorCount++;
+
+    } : {};
+
+    validationCondition();
+
+    numberOfAllKeyStrokes++;
+
+    globals = {keyPosition, numberOfAllKeyStrokes, wordCount, errorCount};
 
     return globals;
 

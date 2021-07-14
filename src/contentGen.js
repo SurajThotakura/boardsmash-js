@@ -12,7 +12,7 @@ export function generateContent(contentDiv) {
 
     contentDiv.innerText = paragraph;
 
-    console.log(paragraph);
+    // console.log(paragraph);
 
     const characterArray = Splitting({
 
