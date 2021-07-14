@@ -168,24 +168,6 @@ body > footer {
     background-color: var(--lightblue);
 }
 
-/* #restartButton{
-    background-color: var(--lightblue);
-    padding: .75rem;
-    border-radius: 8px;
-    width: 10rem;
-    margin: 2rem auto 0 auto;
-    text-align: center;
-}
-
-#restartButton:hover{
-    background-color: var(--blue);
-    cursor: pointer;
-}
-
-#restartButton:active{
-    background-color: var(--lightblue);
-} */
-
 #timeCount{
     margin-top: 2rem;
     text-align: center;
@@ -205,6 +187,6 @@ body > footer {
     padding: .25rem;
 }
 
-#tab1Content, #tab2Content, #tab3Content, #tab4Content{
+.tabContent{
     margin-top: 35vh;
 }
