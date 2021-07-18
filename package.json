@@ -7,6 +7,8 @@
     "init": "firebase init hosting",
     "yarninit": "yarn init",
     "lint": "eslint src/**/*.js --fix && echo 'Lint Complete' ",
+    "lint:html": "prettier src/**/*.html  --write",
+    "lint:css": "prettier src/**/*.css",
     "start": "parcel serve src/index.html",
     "build": "parcel build src/index.html",
     "deploy": "firebase deploy",
@@ -16,6 +18,10 @@
   "lint-staged": {
     "src/**/*.js": [
       "npm run lint"
+    ],
+    "src/**/*.{html,css}": [
+      "npm run lint:html",
+      "npm run lint:css"
     ]
   },
   "husky": {
