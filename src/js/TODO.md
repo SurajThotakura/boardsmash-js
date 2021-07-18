@@ -1,2 +1,3 @@
 - Move all javascript files to js folder
 - Install eslint and prettier and remove unnecessary spacing
+- TIMER_LIMIT conversion can be moved to calculations.js

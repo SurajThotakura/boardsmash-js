@@ -24,7 +24,7 @@
 
 html,
 body {
-    font-family: 'DM Mono';
+    font-family: "DM Mono";
     /* font-weight: 600; */
     background: var(--background);
     color: var(--font);
@@ -156,6 +156,12 @@ body > footer {
     width: 10rem;
     margin: 2rem auto 0 auto;
     text-align: center;
+    border: none;
+}
+
+#startButton .disabled {
+    opacity: 0.5;
+    cursor: none;
 }
 
 #startButton:hover {

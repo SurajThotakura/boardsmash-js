@@ -1,4 +1,4 @@
-import { globals } from './index';
+import { globals } from "./index";
 export function calculateSpeed() {
     let { keyPosition, wordCount, speed, accuracy, numberOfAllKeyStrokes } =
         globals;
