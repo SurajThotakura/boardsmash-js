@@ -1,0 +1,2 @@
+- Move all javascript files to js folder
+- Install eslint and prettier and remove unnecessary spacing
