@@ -10,10 +10,11 @@
     "start": "parcel serve src/index.html",
     "build": "parcel build src/index.html",
     "deploy": "firebase deploy",
-    "serve": "firebase serve"
+    "serve": "firebase serve",
+    "prepare": "husky install"
   },
   "lint-staged": {
-    "src/**/*.{js,css,html}": [
+    "src/**/*.js": [
       "npm run lint"
     ]
   },
