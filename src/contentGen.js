@@ -1,4 +1,6 @@
-import {paragraph as _paragraph} from 'txtgen';
+// import {paragraph as _paragraph} from 'txtgen';
+
+import {generatePara} from './paraGen';
 
 import "splitting/dist/splitting.css";
 
@@ -8,11 +10,12 @@ import Splitting from "splitting";
 
 export function generateContent(contentDiv) {
 
-    const paragraph = _paragraph(50);
+    const paragraph = generatePara(100);
+    // const paragraph = _paragraph();
 
-    contentDiv.innerText = paragraph;
+    contentDiv.innerHTML = paragraph;
 
-    // console.log(paragraph);
+    console.log(paragraph);
 
     const characterArray = Splitting({
 

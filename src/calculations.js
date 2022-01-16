@@ -8,7 +8,7 @@ export function calculateSpeed() {
     
     accuracy = Math.floor((keyPosition/numberOfAllKeyStrokes)*100);
 
-    console.log(globals);
+    // console.log(globals);
 
     return {speed, accuracy};
 

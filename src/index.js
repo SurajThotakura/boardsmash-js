@@ -6,6 +6,8 @@ import {buttonDisable} from "./extraFunctions";
 
 import { countDown } from "./countdownTimer";
 
+import { stopTest } from "./countdownTimer";
+
 // import {validation} from "./validation";
 
 
@@ -13,7 +15,11 @@ const timeCount = document.getElementById('timeCount');
 
 let startButton = document.getElementById('startButton');
 
-const timeValue = 10;
+const themeBody = document.getElementsByTagName('body')[0];
+
+const themeHTML = document.getElementsByTagName('html')[0];
+
+const timeValue = 30;
 
 let characterArray;
 
@@ -28,12 +34,15 @@ let globals = {
     accuracy: 0,
 }
 
+const themeToggle = document.getElementsByClassName('themeChange')[0];
+
+themeToggle.addEventListener('click', () => { themeBody.classList.toggle('dark'); themeHTML.classList.toggle('dark'); });
 
 const SPACE = ' ';
 
 const BACKSPACE = 'Backspace'
 
-const oddKeys = ['Shift','Tab','Alt', 'Enter','CapsLock','F1','F2','F3','F4','F5','F6','F7','F8','F9','F10','F11','F12','NumLock','ScrollLock'];
+const oddKeys = ['Shift','Tab','Alt', 'Enter','CapsLock','F1','F2','F3','F4','F5','F6','F7','F8','F9','F10','F11','F12','NumLock','ScrollLock', 'Control', 'Meta'];
 
 
 
@@ -55,7 +64,7 @@ function moveCaretLeft(characters, keyPosition){
 
 function rightInput(characters, keyPosition){
 
-    characters[keyPosition].style.color = 'var(--font-grey)';
+    characters[keyPosition].style.color = 'var(--font)';
 
     moveCaretRight(characters, keyPosition);
 
@@ -63,7 +72,7 @@ function rightInput(characters, keyPosition){
 
 function backspaceUsed(characters, keyPosition){
 
-    characters[keyPosition-1].style.color = 'var(--second-grey)';
+    characters[keyPosition-1].style.color = 'var(--secondfont)';
 
     moveCaretLeft(characters, keyPosition);
 
@@ -76,6 +85,7 @@ function wrongInput(characters, keyPosition){
     moveCaretRight(characters, keyPosition);
 
 }
+
 
 let caretPosition = caret.style;
 
@@ -203,15 +213,32 @@ window.onload = () => {
 
 }
 
-
+let eventCounter = 0;
 
 startButton.addEventListener('click', () => {
     // debugger;
+
+    eventCounter++;
 
     startTestChanges();
 
     document.body.addEventListener('keydown',validation);
 
+});
+
+let simulateClick = () => {startButton.dispatchEvent(new Event('click'))};
+
+document.body.addEventListener('keyup', (e) => {
+    if(e.code == 'Backslash'){
+        if(eventCounter == 0){
+            simulateClick();
+        }
+        else{
+            stopTest(timeCount, startButton, validation);
+            simulateClick();
+            // console.log("You can't start the test more than once");
+        }
+    }
 });
 
 

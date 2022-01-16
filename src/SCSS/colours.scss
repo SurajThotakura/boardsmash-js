@@ -1,0 +1,36 @@
+// Colour pallate
+
+$white: #ffffff;
+$grey1: #fafafa;
+$grey2: #f2f2f2;
+$grey3: #e6e6e6;
+$grey4: #cccccc;
+$grey5: #a9a9a9;
+$grey6: #999999;
+$grey7: #6d6d6d;
+$grey8: #4c4c4c;
+$grey9: #333333;
+$grey10: #131313;
+$black: #000000;
+
+$ice: #8FCEF4;
+$grape: #696EEB;
+$mint: #69EBA5;
+$lemon: #D5EB69;
+$strawberry: #EB696B;
+
+
+
+@mixin theme-light($primary) {
+    background-color: $white;
+    color: $primary;
+    $second-font: $grey6;
+}
+
+@mixin theme($primary, $mode) {
+    @if $mode == 'light' {
+        @include theme-light($primary);
+    } @else {
+        @include theme-dark($primary);
+    }
+}

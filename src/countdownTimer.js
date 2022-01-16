@@ -7,6 +7,7 @@ const timeValue = 30;
 
 let time = timeValue;
 
+let countdownTimer;
 
 function timeCountDecrease(timeDiv){
 
@@ -28,7 +29,7 @@ function displayResult(timeDiv, result){
 }
 
 
-function stopTimer(countdownTimer, timeDiv, startButton, validation){
+function stopTimer(timeDiv, startButton, validation){
 
     const result = calculateSpeed();
 
@@ -44,12 +45,20 @@ function stopTimer(countdownTimer, timeDiv, startButton, validation){
 
 }
 
-
 export function countDown(timeDiv, startButton, validation){
 
-    let countdownTimer = setInterval(function(){
+    countdownTimer = setInterval( function(){
         
-        return time>1 ? timeCountDecrease(timeDiv) : stopTimer(countdownTimer, timeDiv, startButton, validation);
+        return time>1 ? timeCountDecrease(timeDiv) : stopTimer(timeDiv, startButton, validation);
 
     }, 1000);
+
 }
+
+export function stopTest(timeDiv, startButton, validation){
+
+    stopTimer(timeDiv, startButton, validation);
+
+}
+
+export {time}
