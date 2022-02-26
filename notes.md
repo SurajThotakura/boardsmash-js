@@ -27,6 +27,12 @@ local deployments seem to ignore this but when deployed on firebase few assets w
 
 ## let Vs var:
 Scoping
+<br><br>
+
+## .split(/\s/)
+" "   splits the array at one single space character. <br>
+``/\s/``  splits the array at every kind of whitespace character <br>
+``+  ``   Matches between one and unlimitted times <br>
 
 <br>
 

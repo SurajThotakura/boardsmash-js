@@ -1,0 +1,17 @@
+@import "./colours.scss";
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+$primary: $mint;
+
+html, body{
+    @include theme-light($primary);
+    font-family: "DM Mono";
+}
+
+
