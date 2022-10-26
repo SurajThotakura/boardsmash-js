@@ -51,22 +51,6 @@
     --strawberry-low: #F3A8A9;
     --strawberry-high: #E33032;
 
-    --tabs-normal;
-    --tabs-active;
-    --content-normal;
-    --content-correct;
-    --content-incorrect;
-
-    --stats;
-
-    --buttonBG-normal;
-    --buttonFont;
-
-    --tabsBG-normal;
-    --tabsBG-active:;
-
-    --fullBackground:;
-
 
 
     --error: var(--strawberry-high);

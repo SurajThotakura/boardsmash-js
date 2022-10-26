@@ -10,8 +10,10 @@ dist/
 # Removing MacOS files
 .DS_Store
 
-# firebase
+#firebase files
+.firebase
 .firebaserc
+firebase.json
 
 # User-specific files
 *.rsuser
