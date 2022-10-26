@@ -7,31 +7,90 @@
 :root{
     --white: #ffffff;
     --blue: #e3f2ff;
-    --darkblue: #46a8ff;
+    --darkblue: #170a5f;
+    --mediumblue: #4821d4;
     --lightblue: #ECF5FD;
     --blush: #EEB9C1;
     --dark-grey: #131313;
     --font-grey: #333333;
     --medium-grey:#999999;
-    --error: #ff236c;
-    --white: #ffffff;
+    --red: #ff236c;
     --second-grey: #bbbbbb;
     --border-grey: #e6e6e6;
     --second-white: #f2f2f2;
-    --background: #ffffff;
-    --font: #4c4c4c;
+    
+    --grey0: #ffffff;
+    --grey1: #f2f2f2;
+    --grey2: #e6e6e6;
+    --grey3: #cccccc;
+    --grey4: #bbbbbb;
+    --grey5: #999999;
+    --grey6: #4c4c4c;
+    --grey7: #333333;
+    --grey8: #1d1d1d;
+    --grey9: #131313;
+    --grey10: #000000;
+
+    --ice: #8FCEF4;
+    --ice-low: #E1F2FC;
+    --ice-high: #4CB1EE;
+
+    --grape: #696EEB;
+    --grape-low: #A8ABF3;
+    --grape-high: #3037E3;
+
+    --mint: #69EBA5;
+    --mint-low: #A8F3CB;
+    --mint-high: #30E383;
+
+    --lemon: #D5EB69;
+    --lemon-low: #E6F3A8;
+    --lemon-high: #C5E330;
+
+    --strawberry: #EB696B;
+    --strawberry-low: #F3A8A9;
+    --strawberry-high: #E33032;
+
+    --tabs-normal;
+    --tabs-active;
+    --content-normal;
+    --content-correct;
+    --content-incorrect;
+
+    --stats;
+
+    --buttonBG-normal;
+    --buttonFont;
+
+    --tabsBG-normal;
+    --tabsBG-active:;
+
+    --fullBackground:;
+
+
+
+    --error: var(--strawberry-high);
+    
+    --font: var(--font-grey);
+    --second-font: var(--second-grey);
+    --tab-font: var(--second-grey);
+    --background: var(--white);
+    --secondback: var(--second-white);
+    
+    --primary: var(--ice);
+    --primary-light: var(--ice-low);
+    --secondary: var(--ice-high);
 }
 
 html, body{
     font-family: "DM Mono";
-    /* font-weight: 600; */
-    background: var(--background);
-    color: var(--font);
+    background-color: var(--background);
 }
 
 .dark{
-    --font: var(--medium-grey);
-    --background:var(--font-grey);
+    --font: var(--mint);
+    --second-font: var(--grey5);
+    --background:var(--grey8);
 }
 
 body > header {
@@ -64,7 +123,7 @@ body > footer {
     text-align: center;
     background: var(--background);
     /* background-color: var(--background); */
-    border-top: .25rem solid var(--lightblue);
+    /* border-top: .25rem solid var(--primary-light); */
 }
 
 #logo{
@@ -91,24 +150,50 @@ body > footer {
     margin-right: .5rem;
     padding: .75rem;
     margin-top: 2rem;
-    color: var(--second-grey);
+    color: var(--secondfont);
     /* font-weight: 600; */
     line-height: 20px;
-    fill: var(--second-grey);
+    fill: var(--secondfont);
 }
 
 
 .tab:hover{
     cursor: pointer;
-    color: var(--font-gery);
-    fill: var(--font-gery);
-    background-color: var(--second-white);
+    color: var(--font);
+    fill: var(--font);
+    background-color: var(--secondback);
     border-radius: .5rem;
 }
 
 .tab:active{
     cursor: pointer;
-    background-color: var(--lightblue);
+    background-color: var(--primary-light);
+    border-radius: .5rem;
+}
+
+.themeChange{
+    float: right;
+    margin-left: .5rem;
+    margin-right: .5rem;
+    padding: .75rem;
+    margin-top: 2rem;
+    color: var(--secondfont);
+    /* font-weight: 600; */
+    line-height: 20px;
+    fill: var(--secondfont);
+}
+
+.themeChange:hover{
+    cursor: pointer;
+    color: var(--font);
+    fill: var(--font);
+    background-color: var(--secondback);
+    border-radius: .5rem;
+}
+
+.themeChange:active{
+    cursor: pointer;
+    background-color: var(--primary-light);
     border-radius: .5rem;
 }
 
@@ -121,7 +206,7 @@ body > footer {
     margin-top: 2rem;
     text-align: center;
     line-height: 40px;
-    background-color: var(--lightblue);
+    background-color: var(--primary-light);
     border-radius: 10rem;
 }
 
@@ -138,11 +223,11 @@ body > footer {
     width: 4px;
     height: 2.5rem;
     border-radius: 4px;
-    background-color: var(--darkblue);
+    background-color: var(--secondary);
 }
 
 #content{
-    color: var(--second-grey);
+    color: var(--second-font);
     letter-spacing: 1px;
     height: 10.5rem;
     margin-top: 35vh;
@@ -151,7 +236,8 @@ body > footer {
 }
 
 #startButton{
-    background-color: var(--lightblue);
+    background-color: var(--primary-light);
+    color: var(--font);
     padding: .75rem;
     border-radius: 8px;
     width: 10rem;
@@ -160,31 +246,13 @@ body > footer {
 }
 
 #startButton:hover{
-    background-color: var(--blue);
+    background-color: var(--primary);
     cursor: pointer;
 }
 
 #startButton:active{
-    background-color: var(--lightblue);
+    background-color: var(--primary-light);
 }
-
-/* #restartButton{
-    background-color: var(--lightblue);
-    padding: .75rem;
-    border-radius: 8px;
-    width: 10rem;
-    margin: 2rem auto 0 auto;
-    text-align: center;
-}
-
-#restartButton:hover{
-    background-color: var(--blue);
-    cursor: pointer;
-}
-
-#restartButton:active{
-    background-color: var(--lightblue);
-} */
 
 #timeCount{
     margin-top: 2rem;
@@ -194,17 +262,18 @@ body > footer {
 }
 
 #helpStuff{
+    color: var(--font);
     margin-top: 1rem;
     font-size: .75rem;
     text-align: center;
 }
 
 .bubble{
-    background-color: var(--lightblue);
+    background-color: var(--primary-light);
     border-radius: 8px;
-    padding: .25rem;
+    padding: .25rem .5rem;
 }
 
-#tab1Content, #tab2Content, #tab3Content, #tab4Content{
+.tabContent{
     margin-top: 35vh;
 }
