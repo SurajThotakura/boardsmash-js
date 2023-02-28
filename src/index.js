@@ -105,6 +105,14 @@ let validation = (e) => {
         
         countDown(timeCount, startButton, validation); 
 
+        rightInput(characters, keyPosition);
+        
+        let isWordComplete = inputKey == SPACE ? wordCount++ : {};
+
+        isWordComplete;
+
+        keyPosition++;
+
         
     }: inputKey == expectedChar ? () => {
 
