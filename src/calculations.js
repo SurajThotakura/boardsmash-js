@@ -1,15 +1,12 @@
-import {globals} from './index'
+import { globals } from "./index";
 
 export function calculateSpeed() {
+  let { keyPosition, wordCount, speed, accuracy, numberOfAllKeyStrokes } =
+    globals;
 
-    let {keyPosition, wordCount, speed, accuracy, numberOfAllKeyStrokes} = globals;
-    
-    speed = wordCount*2;
-    
-    accuracy = Math.floor((keyPosition/numberOfAllKeyStrokes)*100);
+  speed = wordCount * 2;
 
-    // console.log(globals);
+  accuracy = Math.floor((keyPosition / numberOfAllKeyStrokes) * 100);
 
-    return {speed, accuracy};
-
+  return { speed, accuracy };
 }

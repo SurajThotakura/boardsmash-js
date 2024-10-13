@@ -1,263 +1,296 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-:root{
-    --white: #ffffff;
-    --blue: #e3f2ff;
-    --darkblue: #170a5f;
-    --mediumblue: #4821d4;
-    --lightblue: #ECF5FD;
-    --blush: #EEB9C1;
-    --dark-grey: #131313;
-    --font-grey: #333333;
-    --medium-grey:#999999;
-    --red: #ff236c;
-    --second-grey: #bbbbbb;
-    --border-grey: #e6e6e6;
-    --second-white: #f2f2f2;
-    
-    --grey0: #ffffff;
-    --grey1: #f2f2f2;
-    --grey2: #e6e6e6;
-    --grey3: #cccccc;
-    --grey4: #bbbbbb;
-    --grey5: #999999;
-    --grey6: #4c4c4c;
-    --grey7: #333333;
-    --grey8: #1d1d1d;
-    --grey9: #131313;
-    --grey10: #000000;
+:root {
+  --white: #ffffff;
+  --blue: #e3f2ff;
+  --darkblue: #170a5f;
+  --mediumblue: #4821d4;
+  --lightblue: #ecf5fd;
+  --blush: #eeb9c1;
+  --dark-grey: #131313;
+  --font-grey: #333333;
+  --medium-grey: #999999;
+  --red: #ff236c;
+  --second-grey: #bbbbbb;
+  --border-grey: #e6e6e6;
+  --second-white: #f2f2f2;
 
-    --ice: #8FCEF4;
-    --ice-low: #E1F2FC;
-    --ice-high: #4CB1EE;
+  --grey0: #ffffff;
+  --grey1: #f2f2f2;
+  --grey2: #e6e6e6;
+  --grey3: #cccccc;
+  --grey4: #bbbbbb;
+  --grey5: #999999;
+  --grey6: #4c4c4c;
+  --grey7: #333333;
+  --grey8: #1d1d1d;
+  --grey9: #131313;
+  --grey10: #000000;
 
-    --grape: #696EEB;
-    --grape-low: #A8ABF3;
-    --grape-high: #3037E3;
+  --ice: #8fcef4;
+  --ice-low: #e1f2fc;
+  --ice-high: #4cb1ee;
 
-    --mint: #69EBA5;
-    --mint-low: #A8F3CB;
-    --mint-high: #30E383;
+  --grape: #696eeb;
+  --grape-low: #a8abf3;
+  --grape-high: #3037e3;
 
-    --lemon: #D5EB69;
-    --lemon-low: #E6F3A8;
-    --lemon-high: #C5E330;
+  --mint: #69eba5;
+  --mint-low: #a8f3cb;
+  --mint-high: #30e383;
 
-    --strawberry: #EB696B;
-    --strawberry-low: #F3A8A9;
-    --strawberry-high: #E33032;
+  --lemon: #d5eb69;
+  --lemon-low: #e6f3a8;
+  --lemon-high: #c5e330;
 
+  --strawberry: #eb696b;
+  --strawberry-low: #f3a8a9;
+  --strawberry-high: #e33032;
 
+  --error: var(--strawberry-high);
 
-    --error: var(--strawberry-high);
-    
-    --font: var(--font-grey);
-    --second-font: var(--second-grey);
-    --tab-font: var(--second-grey);
-    --background: var(--white);
-    --secondback: var(--second-white);
-    
-    --primary: var(--ice);
-    --primary-light: var(--ice-low);
-    --secondary: var(--ice-high);
+  --font: var(--font-grey);
+  --second-font: var(--second-grey);
+  --button-font: var(--font-grey);
+  --content-font: var(--font-grey);
+  --tab-font: var(--second-grey);
+  --background: var(--white);
+  --secondback: var(--second-white);
+
+  --primary: var(--ice);
+  --primary-light: var(--ice-low);
+  --secondary: var(--ice-high);
 }
 
-html, body{
-    font-family: "DM Mono";
-    background-color: var(--background);
+.isMobile {
+  display: none;
 }
 
-.dark{
-    --font: var(--mint);
-    --second-font: var(--grey5);
-    --background:var(--grey8);
+@media (max-width: 930px) {
+  .isMobile {
+    position: absolute;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #ffffff05;
+    backdrop-filter: blur(10px);
+  }
+}
+
+.mobileText {
+  font-size: 32px;
+  text-align: center;
+}
+.mobilePara {
+  text-align: center;
+  margin-top: 1.25rem;
+}
+
+html,
+body {
+  font-family: "DM Mono";
+  background-color: var(--background);
+}
+
+.dark {
+  --font: var(--mint);
+  --content-font: var(--grey4);
+  --second-font: var(--grey5);
+  --background: var(--grey8);
+  --secondback: var(--grey7);
+  --button-font: var(--grey8);
 }
 
 body > header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 5rem;
-    background: var(--background);
-    /* background-color: var(--background); */
-    /* border-bottom: .25rem solid ; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5rem;
+  background: var(--background);
+  /* background-color: var(--background); */
+  /* border-bottom: .25rem solid ; */
 }
 
 body > main {
-    width: 100%;
-    padding: 0 10vw;
-    margin-top: 5rem;
-    align-items: center;
-    justify-content: center;
-    background: var(--background);
+  width: 100%;
+  padding: 0 10vw;
+  margin-top: 5rem;
+  align-items: center;
+  justify-content: center;
+  background: var(--background);
 }
 
 body > footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 4rem;
-    padding: 1rem;
-    text-align: center;
-    background: var(--background);
-    /* background-color: var(--background); */
-    /* border-top: .25rem solid var(--primary-light); */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4rem;
+  padding: 1rem;
+  text-align: center;
+  background: var(--background);
+  /* background-color: var(--background); */
+  /* border-top: .25rem solid var(--primary-light); */
 }
 
-#logo{
-    width: 9rem;
-    float: left;
-    height:auto;
-    margin: 2rem;
+#logo {
+  width: 9rem;
+  float: left;
+  height: auto;
+  margin: 2rem;
 }
 
-
-.icon{
-    display: inline-flex;
-    vertical-align: middle;
-    fill: inherit;
+.icon {
+  display: inline-flex;
+  vertical-align: middle;
+  fill: inherit;
 }
 
-.icon:hover{
-    fill: inherit;
+.icon:hover {
+  fill: inherit;
 }
 
-.tab{
-    float: left;
-    margin-left: .5rem;
-    margin-right: .5rem;
-    padding: .75rem;
-    margin-top: 2rem;
-    color: var(--secondfont);
-    /* font-weight: 600; */
-    line-height: 20px;
-    fill: var(--secondfont);
+.tab {
+  float: left;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  padding: 0.75rem;
+  margin-top: 2rem;
+  color: var(--content-font);
+  /* font-weight: 600; */
+  line-height: 20px;
+  fill: var(--second-font);
 }
 
-
-.tab:hover{
-    cursor: pointer;
-    color: var(--font);
-    fill: var(--font);
-    background-color: var(--secondback);
-    border-radius: .5rem;
+.tab:hover {
+  cursor: pointer;
+  color: var(--content-font);
+  fill: var(--font);
+  background-color: var(--secondback);
+  border-radius: 0.5rem;
 }
 
-.tab:active{
-    cursor: pointer;
-    background-color: var(--primary-light);
-    border-radius: .5rem;
+.tab:active {
+  cursor: pointer;
+  background-color: var(--primary-light);
+  border-radius: 0.5rem;
 }
 
-.themeChange{
-    float: right;
-    margin-left: .5rem;
-    margin-right: .5rem;
-    padding: .75rem;
-    margin-top: 2rem;
-    color: var(--secondfont);
-    /* font-weight: 600; */
-    line-height: 20px;
-    fill: var(--secondfont);
+.themeChange {
+  float: right;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  padding: 0.75rem;
+  margin-top: 2rem;
+  color: var(--second-font);
+  /* font-weight: 600; */
+  line-height: 20px;
+  fill: var(--second-font);
 }
 
-.themeChange:hover{
-    cursor: pointer;
-    color: var(--font);
-    fill: var(--font);
-    background-color: var(--secondback);
-    border-radius: .5rem;
+.themeChange:hover {
+  cursor: pointer;
+  color: var(--font);
+  fill: var(--font);
+  background-color: var(--secondback);
+  border-radius: 0.5rem;
 }
 
-.themeChange:active{
-    cursor: pointer;
-    background-color: var(--primary-light);
-    border-radius: .5rem;
+.themeChange:active {
+  cursor: pointer;
+  background-color: var(--primary-light);
+  border-radius: 0.5rem;
 }
 
-.avatar{
-    float: right;
-    width: 2.5rem;
-    height: 2.5rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    margin-top: 2rem;
-    text-align: center;
-    line-height: 40px;
-    background-color: var(--primary-light);
-    border-radius: 10rem;
+.avatar {
+  float: right;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 2rem;
+  text-align: center;
+  line-height: 40px;
+  background-color: var(--primary-light);
+  border-radius: 10rem;
 }
 
-.avatar:hover{
-    cursor: pointer;
+.avatar:hover {
+  cursor: pointer;
 }
 
-#caret{
-    position: absolute;
-    display: none;
-    left: 0px;
-    top: 0px;
-    transition: left .1s ease-out;
-    width: 4px;
-    height: 2.5rem;
-    border-radius: 4px;
-    background-color: var(--secondary);
+#caret {
+  position: absolute;
+  display: none;
+  left: 0px;
+  top: 0px;
+  transition: left 0.1s ease-out;
+  width: 4px;
+  height: 2.5rem;
+  border-radius: 4px;
+  background-color: var(--secondary);
 }
 
-#content{
-    color: var(--second-font);
-    letter-spacing: 1px;
-    height: 10.5rem;
-    margin-top: 35vh;
-    overflow: hidden;
-    font-size: 2rem;
+#content {
+  color: var(--second-font);
+  letter-spacing: 1px;
+  height: 10.5rem;
+  margin-top: 35vh;
+  overflow: hidden;
+  font-size: 2rem;
 }
 
-#startButton{
-    background-color: var(--primary-light);
-    color: var(--font);
-    padding: .75rem;
-    border-radius: 8px;
-    width: 10rem;
-    margin: 2rem auto 0 auto;
-    text-align: center;
+#startButton {
+  background-color: var(--primary-light);
+  color: var(--button-font);
+  padding: 0.75rem;
+  border-radius: 8px;
+  width: 10rem;
+  margin: 2rem auto 0 auto;
+  text-align: center;
 }
 
-#startButton:hover{
-    background-color: #c3eaff;
-    cursor: pointer;
+#startButton:hover {
+  background-color: #c3eaff;
+  cursor: pointer;
 }
 
-#startButton:active{
-    background-color: #a7e0ff;
+#startButton:active {
+  background-color: #a7e0ff;
 }
 
-#timeCount{
-    margin-top: 2rem;
-    text-align: center;
-    font-size: 7rem;
-    color: var(--border-grey);
+#timeCount {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 7rem;
+  color: var(--border-grey);
 }
 
-#helpStuff{
-    color: var(--font);
-    margin-top: 1rem;
-    font-size: .75rem;
-    text-align: center;
+#helpStuff {
+  color: var(--second-font);
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  text-align: center;
 }
 
-.bubble{
-    background-color: var(--primary-light);
-    border-radius: 8px;
-    padding: .25rem .5rem;
+.bubble {
+  background-color: var(--primary-light);
+  color: var(--button-font);
+  border-radius: 8px;
+  padding: 0.25rem 0.5rem;
 }
 
-.tabContent{
-    margin-top: 35vh;
+.tabContent {
+  margin-top: 35vh;
+  color: var(--content-font);
 }

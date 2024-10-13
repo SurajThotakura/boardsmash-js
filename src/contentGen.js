@@ -1,6 +1,6 @@
 // import {paragraph as _paragraph} from 'txtgen';
 
-import {generatePara} from './paraGen';
+import { generatePara } from "./paraGen";
 
 import "splitting/dist/splitting.css";
 
@@ -9,26 +9,20 @@ import "splitting/dist/splitting-cells.css";
 import Splitting from "splitting";
 
 export function generateContent(contentDiv) {
+  const paragraph = generatePara(100);
+  // const paragraph = _paragraph();
 
-    const paragraph = generatePara(100);
-    // const paragraph = _paragraph();
+  contentDiv.innerHTML = paragraph;
 
-    contentDiv.innerHTML = paragraph;
+  const characterArray = Splitting({
+    target: contentDiv,
 
-    console.log(paragraph);
+    by: "chars",
 
-    const characterArray = Splitting({
+    whitespace: "true",
 
-        target: contentDiv,
+    key: "null",
+  });
 
-        by: 'chars',
-
-        whitespace: 'true',
-
-        key: 'null'
-
-    });
-
-    return characterArray;
-
+  return characterArray;
 }
